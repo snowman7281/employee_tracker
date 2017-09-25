@@ -1,0 +1,11 @@
+<h1> <%= @employee.name %> </h1>
+
+
+<form action="/employees/<%= @employee.id %>" method="post">
+  <input type="hidden" name="_method" value="patch">
+  <label for="name">Enter new name</label>
+  <input type="text" name="name" class="form-control">
+  <button type="submit" name="button">Update</button>
+</form>
+
+<a href="/">Home</a>

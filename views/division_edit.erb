@@ -1,0 +1,8 @@
+<h1>Update <%=@division.department  %> </h1>
+
+<form action="/divisions/<%= @division.id %>" method="post">
+  <input type="hidden" name="_method" value="patch">
+  <label for="department">New Department</label>
+  <input type="text" name="department" clas="form-control">
+  <button type="submit" name="button">Update</button>
+</form>
