@@ -15,6 +15,12 @@
 </form>
 
 
+<h2>Remove employee from project.</h2>
+<form action="/projects/edit/<%= @employee.id %>" method="post">
+  <input type="hidden" name="_method" value="patch">
+  <button type="submit" name="button">Remove Employee</button>
+</form>
+
 <h2>Update Employee:</h2>
 <form action="/employees/<%= @employee.id %>" method="post">
   <input type="hidden" name="_method" value="patch">

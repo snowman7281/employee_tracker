@@ -110,3 +110,9 @@ delete('/:id') do
    @divisions = Division.all()
    erb(:index)
  end
+
+ patch('/projects/edit/:id') do
+   @employee = Employee.find(params.fetch("id").to_i)
+   @employee.update({:project_id => nil})
+   erb(:employee)
+ end
