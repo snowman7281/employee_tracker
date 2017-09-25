@@ -103,3 +103,10 @@ post('/projects/:id') do
   @employees = @project.employees
   erb(:project)
 end
+
+delete('/:id') do
+   @division = Division.find(params.fetch('id').to_i)
+   Division.destroy(@division.id)
+   @divisions = Division.all()
+   erb(:index)
+ end
