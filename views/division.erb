@@ -1,1 +1,17 @@
 <h1> <%= @division.department %> </h1>
+
+<h2>Employees</h2>
+<ul>
+  <% if @division.employees.any? %>
+    <% @employees.each do |employee| %>
+      <li><a href="/employees/<%= employee.id %>"><%= employee.name %></a></li>
+    <% end %>
+    <% end %>
+</ul>
+
+<form action="/divisions/<%= @division.id %>" method="post">
+  <input id="division_id" name="division_id" type="hidden" value="<%= @division.id() %>">
+  <label for="name">Employee Name</label>
+  <input type="text" name="name" class="form-control">
+  <button type="submit" name="button">Add Employee</button>
+</form>
