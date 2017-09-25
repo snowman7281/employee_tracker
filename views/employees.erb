@@ -1,0 +1,9 @@
+<h1>Current employees:</h1>
+
+<ul>
+  <% if @employees.any? %>
+    <% @employees.each do |employee| %>
+      <li><a href="/employees/<%= employee.id %>"><%= employee.name %></a></li>
+    <% end %>
+  <% end %>
+</ul>

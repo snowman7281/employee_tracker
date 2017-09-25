@@ -4,6 +4,7 @@ also_reload("lib/**/*.rb")
 require("sinatra/activerecord")
 require("./lib/division")
 require("./lib/employee")
+require("./lib/project")
 require("pg")
 require("pry")
 
@@ -49,8 +50,22 @@ patch('/divisions/:id') do
   erb(:division)
 end
 
+get('/employees') do
+  @employees = Employee.all
+  erb(:employees)
+end
+
 get('/employees/:id') do
   @employee = Employee.find(params.fetch("id").to_i)
+  erb(:employee)
+end
+
+post('/employees/:id') do
+  @employee = Employee.find(params.fetch("id").to_i)
+  title = params.fetch("title")
+  employee_id = params.fetch("employee_id").to_i
+  project = Project.create({:title => title, :employee_id => employee_id})
+  @employee.update({:project_id => project.id})
   erb(:employee)
 end
 
@@ -59,4 +74,32 @@ patch('/employees/:id') do
   @employee = Employee.find(params.fetch("id").to_i)
   @employee.update({:name => name})
   erb(:employee)
+end
+
+get('/projects') do
+  @projects = Project.all()
+  erb(:projects)
+end
+
+post('/projects') do
+  title = params.fetch("title")
+  project = Project.create({:title => title})
+  @projects = Project.all()
+  erb(:projects)
+end
+
+get('/projects/:id') do
+  @project = Project.find(params.fetch("id").to_i)
+  @employees = @project.employees
+  erb(:project)
+end
+
+post('/projects/:id') do
+  @project = Project.find(params.fetch("id").to_i)
+  name = params.fetch("name")
+  project_id = params.fetch("project_id")
+  employee = Employee.create({:name => name, :project_id => project_id})
+  @project.update({:employee_id => employee.id})
+  @employees = @project.employees
+  erb(:project)
 end

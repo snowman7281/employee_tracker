@@ -1,0 +1,15 @@
+<h1>Current Projects</h1>
+
+<ul>
+  <% if @projects.any? %>
+    <% @projects.each do |project| %>
+      <li><a href="/projects/<%= project.id %>"><%= project.title %></a></li>
+    <% end %>
+  <% end %>
+</ul>
+
+<form  action="/projects" method="post">
+  <label for="title">Add new title</label>
+  <input type="text" name="title" class="form-control">
+  <button type="submit" name="button">Add Project</button>
+</form>
