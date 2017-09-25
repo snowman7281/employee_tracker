@@ -12,3 +12,11 @@ get('/') do
   @divisions = Division.all()
   erb(:index)
 end
+
+post('/') do
+  department = params.fetch("department")
+  division = Division.new({:department => department})
+  division.save
+  @divisions = Division.all()
+  erb(:index)
+end

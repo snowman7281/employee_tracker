@@ -1,1 +1,18 @@
-<h1></h1>
+<h1>Employee Tracker</h1>
+
+<h2>List of Divisions:</h2>
+
+<ul>
+  <% @divisions.each do |division| %>
+    <li> <a href="divisons/<%= division.id %>"><%= division.department %></a></li>
+  <% end %>
+</ul>
+
+
+<h2>Add a new division:</h2>
+
+<form action="/" method="post">
+  <label for="department">Department:</label>
+  <input type="text" name="department" class="form-control">
+  <button type="submit" name="button" class="btn">Add Division</button>
+</form>
